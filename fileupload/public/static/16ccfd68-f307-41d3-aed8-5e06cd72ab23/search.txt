@@ -1,0 +1,25 @@
+a=[2,4,6,8,10]
+# linearSearch
+def linearSearch(a,item):
+    for i in a:
+        if i == item:
+            return True
+    else:
+        return False
+
+print(linearSearch(a,int(input("enter the element to search"))))
+
+# binarySearch
+def binarySearch(a,item):
+    l=0
+    h=len(a)
+    while(l<=h):
+        m=(l+h)//2
+        if a[m]==item:
+            return m
+        elif a[m]>item:
+            h=m-1
+        else:
+            l=m+1
+            
+print(binarySearch(a,int(input("enter the element to search:"))))

@@ -1,0 +1,52 @@
+# division method and channing
+
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.slots = [[] for _ in range(self.size)]
+        self.data = [[] for _ in range(self.size)]
+    
+    def put(self, key, value):
+        hash_value = self.hash_function(key)
+
+        if self.slots[hash_value] == []:
+            self.slots[hash_value].append(key)
+            self.data[hash_value].append(value)
+        else:
+            for index, item in enumerate(self.slots[hash_value]):
+                if item == key:
+                    self.data[hash_value][index] = value
+                    return
+
+            self.slots[hash_value].append(key)
+            self.data[hash_value].append(value)
+    
+    def hash_function(self, key):
+        return key % self.size
+    
+    def get(self, key):
+        hash_value = self.hash_function(key)
+        for index, item in enumerate(self.slots[hash_value]):
+            if item == key:
+                return self.data[hash_value][index]
+        return None
+        
+    def display(self):
+        print(self.slots)
+        print(self.data)
+        for i in range(self.size):
+            print("Slot {}:".format(i))
+            for j, key in enumerate(self.slots[i]):
+                print("Key: {}, Value: {}".format(key, self.data[i][j]))
+        # for i,key in enumerate(self.slots[0]):
+        #     print(i,key)
+
+
+l=HashTable(5)
+l.put(10,10)
+l.put(5,20)
+l.display()
+print(l.get(10))
+
+
+# mid square method and double hashing
